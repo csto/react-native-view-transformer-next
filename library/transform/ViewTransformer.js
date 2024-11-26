@@ -1,17 +1,17 @@
 'use strict';
 
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import ReactNative, {
-  View,
   Animated,
   Easing,
-  NativeModules
+  NativeModules,
+  View
 } from 'react-native';
 
-import {createResponder} from 'react-native-gesture-responder';
+import { createResponder } from 'react-native-gesture-responder';
 import Scroller from 'react-native-scroller';
-import {Rect, Transform, transformedRect, availableTranslateSpace, fitCenterRect, alignedRect, getTransform} from './TransformUtils';
+import { alignedRect, availableTranslateSpace, fitCenterRect, getTransform, Rect, Transform, transformedRect } from './TransformUtils';
 
 export default class ViewTransformer extends React.Component {
 
@@ -373,7 +373,8 @@ export default class ViewTransformer extends React.Component {
     Animated.timing(this.state.animator, {
       toValue: 1,
       duration: duration,
-      easing: Easing.inOut(Easing.ease)
+      easing: Easing.inOut(Easing.ease),
+      useNativeDriver: false
     }).start();
   }
 
