@@ -5,7 +5,7 @@ import React from 'react';
 import ReactNative, {
   Animated,
   Easing,
-  NativeModules,
+  UIManager,
   View
 } from 'react-native';
 
@@ -147,7 +147,7 @@ export default class ViewTransformer extends React.Component {
 
   measureLayout() {
     let handle = ReactNative.findNodeHandle(this.refs['innerViewRef']);
-    NativeModules.UIManager.measure(handle, ((x, y, width, height, pageX, pageY) => {
+    UIManager.measure(handle, ((x, y, width, height, pageX, pageY) => {
       if(typeof pageX === 'number' && typeof pageY === 'number') { //avoid undefined values on Android devices
         if(this.state.pageX !== pageX || this.state.pageY !== pageY) {
           this.setState({
@@ -373,8 +373,7 @@ export default class ViewTransformer extends React.Component {
     Animated.timing(this.state.animator, {
       toValue: 1,
       duration: duration,
-      easing: Easing.inOut(Easing.ease),
-      useNativeDriver: false
+      easing: Easing.inOut(Easing.ease)
     }).start();
   }
 
